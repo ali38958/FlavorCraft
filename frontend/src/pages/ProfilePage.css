@@ -1,0 +1,231 @@
+/* Profile Page Styles */
+.profile-page {
+  padding: var(--space-8) 0 var(--space-16);
+  background-color: var(--color-bg);
+  min-height: calc(100vh - 72px - 260px);
+}
+
+.profile-page-guest {
+  padding: var(--space-16) 0;
+  display: flex;
+  justify-content: center;
+}
+
+.guest-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-10) var(--space-8);
+  max-width: 480px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.guest-icon {
+  font-size: 3.5rem;
+  margin-bottom: var(--space-2);
+  display: inline-block;
+}
+
+.guest-card h1 {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  margin-bottom: var(--space-3);
+}
+
+.guest-card p {
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+  margin-bottom: var(--space-6);
+}
+
+.guest-actions {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+}
+
+/* Profile Header Card */
+.profile-header-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  margin-bottom: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.profile-avatar-large {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+  color: #ffffff;
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(244, 97, 26, 0.35);
+  flex-shrink: 0;
+}
+
+.profile-details {
+  flex-grow: 1;
+}
+
+.profile-badges-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: var(--space-2);
+}
+
+.profile-name {
+  font-family: var(--font-serif);
+  font-size: 1.85rem;
+  margin-bottom: 0.2rem;
+  color: var(--color-text);
+}
+
+.profile-email {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
+.profile-header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .profile-header-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  .profile-badges-row {
+    justify-content: center;
+  }
+  .profile-header-actions {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Stats Strip */
+.profile-stats-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+@media (max-width: 600px) {
+  .profile-stats-strip {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stat-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  text-align: center;
+  box-shadow: var(--shadow-xs);
+}
+
+.stat-value {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 0.25rem;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* User's Created Recipes Section */
+.profile-recipes-section {
+  padding-top: var(--space-4);
+}
+
+.profile-section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: var(--space-6);
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.profile-recipes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+@media (max-width: 1024px) {
+  .profile-recipes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .profile-recipes-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.profile-error-alert {
+  padding: var(--space-3);
+  background-color: var(--color-danger-light);
+  color: var(--color-danger);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-4);
+}
+
+/* Empty State */
+.profile-empty-state {
+  grid-column: 1 / -1;
+  background-color: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-12) var(--space-6);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.empty-chef-hat {
+  font-size: 3.5rem;
+  margin-bottom: var(--space-3);
+}
+
+.profile-empty-state h3 {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  margin-bottom: var(--space-2);
+}
+
+.profile-empty-state p {
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-6);
+}

@@ -1,0 +1,123 @@
+/* Login & Auth Pages Styles */
+.login-page {
+  padding: var(--space-12) 0 var(--space-16);
+  background-color: var(--color-bg);
+  min-height: calc(100vh - 72px - 260px);
+  display: flex;
+  align-items: center;
+}
+
+.login-container {
+  max-width: 480px;
+}
+
+.login-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-md);
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+.login-icon {
+  font-size: 2.75rem;
+  margin-bottom: var(--space-2);
+  display: inline-block;
+}
+
+.login-title {
+  font-family: var(--font-serif);
+  font-size: 1.85rem;
+  margin-bottom: 0.35rem;
+  color: var(--color-text);
+}
+
+.login-subtitle {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+/* Demo Credentials Banner */
+.demo-credentials-banner {
+  background-color: var(--color-accent-light);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  margin-bottom: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.demo-text {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.demo-badge {
+  background-color: var(--color-accent);
+  color: var(--color-text);
+  font-size: 0.725rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-sm);
+}
+
+.demo-text p {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.login-error-alert {
+  background-color: var(--color-danger-light);
+  border: 1px solid var(--color-danger);
+  color: var(--color-danger);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  margin-bottom: var(--space-5);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.label-flex-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.login-submit-btn {
+  width: 100%;
+  margin-top: var(--space-2);
+}
+
+.login-footer-link {
+  text-align: center;
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border-subtle);
+  font-size: 0.9rem;
+}
+
+.auth-switch-link {
+  color: var(--color-primary);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.auth-switch-link:hover {
+  color: var(--color-primary-hover);
+}

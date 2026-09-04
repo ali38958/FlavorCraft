@@ -115,7 +115,7 @@ Next phase begins
 | 2 | Frontend Foundation (Design System + Layout) | frontend-specialist | ✅ Complete | ~30 min |
 | 3 | Core Pages (Homepage + Recipe List) | frontend-specialist | ✅ Complete | ~60 min |
 | 4 | Recipe Detail + Submit Form | frontend-specialist | ✅ Complete | ~45 min |
-| 5 | Auth UI (Login/Register) | frontend-specialist | Not Started | ~30 min |
+| 5 | Auth UI (Login/Register) | frontend-specialist | ✅ Complete | ~30 min |
 | 6 | Integration and Polish | orchestrator | Not Started | ~45 min |
 | X | Final Verification | qa-automation-engineer | Not Started | ~20 min |
 
@@ -478,12 +478,12 @@ Submit Recipe:
 
 ### Tasks
 
-- [ ] LoginPage — Email + Password, submit handler, error display
-- [ ] RegisterPage — Name + Email + Password
-- [ ] services/auth.js — login(), register(), logout(), getToken(), isLoggedIn()
-- [ ] NavBar — reads auth state, shows Login or Logout
-- [ ] ProtectedRoute — redirects to /login if no token
-- [ ] Apply ProtectedRoute to Submit Recipe page
+- [x] LoginPage — Email + Password, submit handler, error display
+- [x] RegisterPage — Name + Email + Password
+- [x] services/auth.js — login(), register(), logout(), getToken(), isLoggedIn()
+- [x] NavBar — reads auth state, shows Login or Logout
+- [x] ProtectedRoute — redirects to /login if no token
+- [x] Apply ProtectedRoute to Submit Recipe page
 
 ### How to Verify Phase 5
 
