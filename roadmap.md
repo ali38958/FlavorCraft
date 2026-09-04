@@ -109,7 +109,7 @@ Next phase begins
 
 | Phase | Name | Agent | Status | Est. Time |
 |-------|------|-------|--------|-----------|
-| 0 | Git Init and Repo Hygiene | devops-engineer | Not Started | ~10 min |
+| 0 | Git Init and Repo Hygiene | devops-engineer | ✅ Complete | ~10 min |
 | 0.5 | Project Scaffold and Tooling | project-planner | Not Started | ~20 min |
 | 1 | Backend Foundation (Express + JWT) | backend-specialist | Not Started | ~45 min |
 | 2 | Frontend Foundation (Design System + Layout) | frontend-specialist | Not Started | ~30 min |
@@ -129,10 +129,10 @@ Next phase begins
 
 ### Tasks
 
-- [ ] Run git init in project root
-- [ ] Create .gitignore with all necessary exclusions
-- [ ] Create placeholder README.md
-- [ ] Stage and commit: git commit -m "chore: initial commit with roadmap"
+- [x] Run git init in project root
+- [x] Create .gitignore with all necessary exclusions
+- [x] Create placeholder README.md
+- [x] Stage and commit: git commit -m "chore: initial commit with roadmap"
 
 ### .gitignore Content
 
