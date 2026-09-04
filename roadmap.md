@@ -110,7 +110,7 @@ Next phase begins
 | Phase | Name | Agent | Status | Est. Time |
 |-------|------|-------|--------|-----------|
 | 0 | Git Init and Repo Hygiene | devops-engineer | ✅ Complete | ~10 min |
-| 0.5 | Project Scaffold and Tooling | project-planner | Not Started | ~20 min |
+| 0.5 | Project Scaffold and Tooling | project-planner | ✅ Complete | ~20 min |
 | 1 | Backend Foundation (Express + JWT) | backend-specialist | Not Started | ~45 min |
 | 2 | Frontend Foundation (Design System + Layout) | frontend-specialist | Not Started | ~30 min |
 | 3 | Core Pages (Homepage + Recipe List) | frontend-specialist | Not Started | ~60 min |
@@ -231,13 +231,13 @@ recipe-app/
 
 ### Tasks
 
-- [ ] npx create-vite@latest frontend -- --template react
-- [ ] Create backend/ with npm init -y
-- [ ] Install backend: express jsonwebtoken bcryptjs cors dotenv
-- [ ] Install backend devDeps: nodemon
-- [ ] Add "dev": "nodemon server.js" to backend package.json
-- [ ] Create bare server.js with GET /health
-- [ ] Verify both servers start
+- [x] npx create-vite@latest frontend -- --template react
+- [x] Create backend/ with npm init -y
+- [x] Install backend: express jsonwebtoken bcryptjs cors dotenv
+- [x] Install backend devDeps: nodemon
+- [x] Add "dev": "nodemon server.js" to backend package.json
+- [x] Create bare server.js with GET /health
+- [x] Verify both servers start
 
 ### How to Verify Phase 0.5
 
