@@ -1,5 +1,9 @@
 # AG Kit Agent and Planning System (never track in git)
 .agents/
+roadmap.md
+DESIGN.md
+*.pdf
+frontend/README.md
 
 # Environment and Secrets
 .env

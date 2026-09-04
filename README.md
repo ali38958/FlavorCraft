@@ -1,5 +1,8 @@
 # 🍳 FlavorCraft — Recipe Sharing Web Application
 
+> [!IMPORTANT]
+> **TEST PROJECT NOTICE:** This application was developed specifically for a **technical evaluation / internship selection assessment**. It is a complete full-stack demonstration prototype built to test end-to-end coding capabilities, architecture design, and UI/UX craftsmanship.
+
 A modern, responsive full-stack culinary community platform for discovering, filtering, viewing, and sharing chef-tested recipes. Built with **React 18**, **Vite**, **Express**, and **JWT Authentication**, styled with bespoke **Vanilla CSS design tokens** (strictly no Tailwind).
 
 Developed as the official submission for the **Internship Selection Task**.
@@ -135,8 +138,7 @@ Web selection/
 │   ├── package.json
 │   └── .env.example
 │
-├── DESIGN.md                     # Design tokens & visual specifications
-├── roadmap.md                    # Multi-phase execution roadmap
+├── run.bat                       # ⚡ 1-Click launcher (installs dependencies, runs both servers & opens browser)
 └── README.md                     # Documentation
 ```
 
@@ -144,11 +146,30 @@ Web selection/
 
 ## 🚀 Quick Start Guide
 
-### Prerequisites
+### Option A: ⚡ 1-Click Automated Launch (Windows)
+
+Simply double-click **`run.bat`** (or execute from terminal):
+
+```cmd
+.\run.bat
+```
+
+This automated script will:
+1. Verify your Node.js installation.
+2. Install all backend and frontend dependencies automatically.
+3. Start the Express API server on `http://localhost:5000`.
+4. Start the Vite React client on `http://localhost:5173`.
+5. Automatically open **`http://localhost:5173`** in your default web browser!
+
+---
+
+### Option B: Manual Setup
+
+#### Prerequisites
 - Node.js (v18 or higher recommended)
 - npm (v9 or higher)
 
-### 1. Clone & Setup Backend
+#### 1. Setup & Start Backend
 
 ```powershell
 # Navigate to backend directory
