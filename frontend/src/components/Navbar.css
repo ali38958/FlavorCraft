@@ -195,6 +195,7 @@
   border: none;
   cursor: pointer;
   padding: 0;
+  z-index: 1001;
 }
 
 .hamburger-bar {
@@ -202,7 +203,20 @@
   height: 2.5px;
   background-color: var(--color-text);
   border-radius: 2px;
-  transition: all 0.25s ease;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease, background-color 0.2s ease;
+  transform-origin: center;
+}
+
+.hamburger-bar:nth-child(1).open {
+  transform: translateY(8.5px) rotate(45deg);
+}
+
+.hamburger-bar:nth-child(2).open {
+  opacity: 0;
+}
+
+.hamburger-bar:nth-child(3).open {
+  transform: translateY(-8.5px) rotate(-45deg);
 }
 
 /* Responsive Visibility */
@@ -215,13 +229,36 @@
   }
 }
 
+/* Mobile Backdrop Overlay */
+.mobile-backdrop {
+  position: fixed;
+  top: 72px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(25, 30, 36, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 998;
+  animation: fadeInBackdrop 0.2s ease-out;
+}
+
+@keyframes fadeInBackdrop {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 /* Mobile Drawer */
 .mobile-drawer {
+  position: relative;
+  z-index: 999;
   background-color: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
-  padding: var(--space-4);
+  padding: var(--space-5);
   box-shadow: var(--shadow-lg);
-  animation: slideDown 0.25s ease-out;
+  animation: slideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  max-height: calc(100vh - 72px);
+  overflow-y: auto;
 }
 
 @keyframes slideDown {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './Navbar.css';
@@ -8,6 +8,18 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -113,57 +125,60 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Navigation Drawer */}
+      {/* Mobile Navigation Drawer & Backdrop */}
       {mobileMenuOpen && (
-        <div className="mobile-drawer">
-          <form className="mobile-search-form" onSubmit={handleSearchSubmit}>
-            <input
-              type="text"
-              placeholder="Search recipes, ingredients..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="input mobile-search-input"
-            />
-            <button type="submit" className="btn btn-primary btn-sm">
-              Search
-            </button>
-          </form>
+        <>
+          <div className="mobile-backdrop" onClick={closeMenu} aria-hidden="true" />
+          <div className="mobile-drawer">
+            <form className="mobile-search-form" onSubmit={handleSearchSubmit}>
+              <input
+                type="text"
+                placeholder="Search recipes, ingredients..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="input mobile-search-input"
+              />
+              <button type="submit" className="btn btn-primary btn-sm">
+                Search
+              </button>
+            </form>
 
-          <nav className="mobile-nav-links">
-            <NavLink to="/" end onClick={closeMenu} className="mobile-nav-link">
-              🏠 Home
-            </NavLink>
-            <NavLink to="/recipes" onClick={closeMenu} className="mobile-nav-link">
-              📖 Browse Recipes
-            </NavLink>
-            <NavLink to="/submit" onClick={closeMenu} className="mobile-nav-link">
-              ✍️ Submit Recipe
-            </NavLink>
-            <NavLink to="/profile" onClick={closeMenu} className="mobile-nav-link">
-              👤 User Profile
-            </NavLink>
-          </nav>
+            <nav className="mobile-nav-links">
+              <NavLink to="/" end onClick={closeMenu} className="mobile-nav-link">
+                🏠 Home
+              </NavLink>
+              <NavLink to="/recipes" onClick={closeMenu} className="mobile-nav-link">
+                📖 Browse Recipes
+              </NavLink>
+              <NavLink to="/submit" onClick={closeMenu} className="mobile-nav-link">
+                ✍️ Submit Recipe
+              </NavLink>
+              <NavLink to="/profile" onClick={closeMenu} className="mobile-nav-link">
+                👤 User Profile
+              </NavLink>
+            </nav>
 
-          <div className="mobile-auth-section">
-            {isAuthenticated ? (
-              <div className="mobile-user-box">
-                <p className="mobile-user-greeting">Signed in as <strong>{user?.name}</strong></p>
-                <button onClick={() => { logout(); closeMenu(); }} className="btn btn-secondary btn-sm" style={{ width: '100%' }}>
-                  Log Out
-                </button>
-              </div>
-            ) : (
-              <div className="mobile-auth-buttons">
-                <Link to="/login" onClick={closeMenu} className="btn btn-secondary" style={{ width: '100%' }}>
-                  Log In
-                </Link>
-                <Link to="/register" onClick={closeMenu} className="btn btn-primary" style={{ width: '100%' }}>
-                  Create Account
-                </Link>
-              </div>
-            )}
+            <div className="mobile-auth-section">
+              {isAuthenticated ? (
+                <div className="mobile-user-box">
+                  <p className="mobile-user-greeting">Signed in as <strong>{user?.name}</strong></p>
+                  <button onClick={() => { logout(); closeMenu(); }} className="btn btn-secondary btn-sm" style={{ width: '100%' }}>
+                    Log Out
+                  </button>
+                </div>
+              ) : (
+                <div className="mobile-auth-buttons">
+                  <Link to="/login" onClick={closeMenu} className="btn btn-secondary" style={{ width: '100%' }}>
+                    Log In
+                  </Link>
+                  <Link to="/register" onClick={closeMenu} className="btn btn-primary" style={{ width: '100%' }}>
+                    Create Account
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
+        </>
       )}
     </header>
   );

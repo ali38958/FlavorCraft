@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import RecipeCard from '../components/RecipeCard';
 import FilterBar from '../components/FilterBar';
 import SkeletonCard from '../components/SkeletonCard';
+import useDebounce from '../hooks/useDebounce';
 import api from '../services/api';
 import './RecipeListPage.css';
 
@@ -18,7 +19,7 @@ export default function RecipeListPage() {
   const currentMaxTime = searchParams.get('maxTime') || '';
 
   // Update query params helper
-  const updateFilterParam = (key, value) => {
+  const updateFilterParam = useCallback((key, value) => {
     setSearchParams((prev) => {
       const next = new URLSearchParams(prev);
       if (value) {
@@ -28,9 +29,28 @@ export default function RecipeListPage() {
       }
       return next;
     }, { replace: true });
-  };
+  }, [setSearchParams]);
+
+  // Sync state during render when URL query param changes externally
+  const [prevSearch, setPrevSearch] = useState(currentSearch);
+  const [searchInput, setSearchInput] = useState(currentSearch);
+  if (currentSearch !== prevSearch) {
+    setPrevSearch(currentSearch);
+    setSearchInput(currentSearch);
+  }
+
+  const debouncedSearch = useDebounce(searchInput, 300);
+
+  // Sync debounced search to URL query param
+  useEffect(() => {
+    if (debouncedSearch !== currentSearch) {
+      updateFilterParam('search', debouncedSearch);
+    }
+  }, [debouncedSearch, currentSearch, updateFilterParam]);
 
   const handleResetFilters = () => {
+    setSearchInput('');
+    setPrevSearch('');
     setSearchParams({}, { replace: true });
   };
 
@@ -84,8 +104,8 @@ export default function RecipeListPage() {
 
         {/* Filter Bar (PDF Requirement 2.b & 1.b) */}
         <FilterBar
-          search={currentSearch}
-          onSearchChange={(val) => updateFilterParam('search', val)}
+          search={searchInput}
+          onSearchChange={setSearchInput}
           category={currentCategory}
           onCategoryChange={(cat) => updateFilterParam('category', cat)}
           maxTime={currentMaxTime}
