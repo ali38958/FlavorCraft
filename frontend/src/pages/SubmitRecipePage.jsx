@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
@@ -22,6 +22,7 @@ const SAMPLE_IMAGES = [
 export default function SubmitRecipePage() {
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
+  const fileInputRef = useRef(null);
 
   // Form State (PDF Requirement 4.a: Title, Ingredients, Instructions, Category, Cooking Time)
   const [formData, setFormData] = useState({
@@ -30,14 +31,81 @@ export default function SubmitRecipePage() {
     category: 'Dinner',
     difficulty: 'Medium',
     cookingTime: '30',
-    image: SAMPLE_IMAGES[0]
+    image: ''
   });
+
+  const [imageFileName, setImageFileName] = useState('');
+  const [imageFileSize, setImageFileSize] = useState('');
+  const [isDragging, setIsDragging] = useState(false);
+  const [imageError, setImageError] = useState(null);
+  const [showPresets, setShowPresets] = useState(false);
 
   const [ingredients, setIngredients] = useState(['', '', '']);
   const [instructions, setInstructions] = useState(['', '', '']);
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [serverError, setServerError] = useState(null);
+
+  // Image File Handlers
+  const handleFileSelect = (file) => {
+    if (!file) return;
+    if (!file.type.startsWith('image/')) {
+      setImageError('Please select a valid image file (PNG, JPG, JPEG, WebP).');
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      setImageError('Image file is too large. Maximum allowed size is 5MB.');
+      return;
+    }
+
+    setImageError(null);
+    setImageFileName(file.name);
+    const sizeKb = Math.round(file.size / 1024);
+    setImageFileSize(sizeKb > 1024 ? `${(sizeKb / 1024).toFixed(1)} MB` : `${sizeKb} KB`);
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      setFormData((prev) => ({ ...prev, image: reader.result }));
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      handleFileSelect(e.dataTransfer.files[0]);
+    }
+  };
+
+  const triggerFilePicker = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
+  const handleRemoveImage = () => {
+    setFormData((prev) => ({ ...prev, image: '' }));
+    setImageFileName('');
+    setImageFileSize('');
+    setImageError(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -135,7 +203,7 @@ export default function SubmitRecipePage() {
         category: formData.category,
         difficulty: formData.difficulty,
         cookingTime: Number(formData.cookingTime),
-        image: formData.image.trim(),
+        image: (formData.image && formData.image.trim()) || SAMPLE_IMAGES[0],
         ingredients: ingredients.map((i) => i.trim()).filter(Boolean),
         instructions: instructions.map((i) => i.trim()).filter(Boolean)
       };
@@ -286,34 +354,130 @@ export default function SubmitRecipePage() {
               </div>
             </div>
 
-            {/* Image URL & Sample Picker */}
-            <div className="form-group">
-              <label htmlFor="image" className="form-label">
-                Recipe Image URL
+            {/* Professional Image Upload Dropzone */}
+            <div className="form-group image-upload-form-group">
+              <label className="form-label">
+                Recipe Dish Photo
               </label>
+
+              {/* Hidden native file input */}
               <input
-                id="image"
-                name="image"
-                type="url"
-                placeholder="https://images.unsplash.com/..."
-                value={formData.image}
-                onChange={handleInputChange}
-                className="input"
+                ref={fileInputRef}
+                type="file"
+                accept="image/png, image/jpeg, image/jpg, image/webp"
+                onChange={(e) => {
+                  if (e.target.files && e.target.files[0]) {
+                    handleFileSelect(e.target.files[0]);
+                  }
+                }}
+                style={{ display: 'none' }}
               />
-              <div className="sample-images-row">
-                <span className="sample-label">Or choose a quick culinary photo:</span>
-                <div className="sample-thumbnails">
-                  {SAMPLE_IMAGES.map((imgUrl, i) => (
-                    <button
-                      type="button"
-                      key={i}
-                      onClick={() => setFormData((p) => ({ ...p, image: imgUrl }))}
-                      className={`sample-thumb-btn ${formData.image === imgUrl ? 'selected' : ''}`}
-                    >
-                      <img src={imgUrl} alt={`Sample ${i + 1}`} />
-                    </button>
-                  ))}
+
+              {formData.image ? (
+                /* Uploaded Image Preview */
+                <div className="uploaded-preview-card">
+                  <div className="uploaded-img-wrapper">
+                    <img src={formData.image} alt="Uploaded Recipe Dish" className="uploaded-img" />
+                  </div>
+                  <div className="uploaded-meta-bar">
+                    <div className="uploaded-info">
+                      <span className="uploaded-status-badge">✓ Photo Selected</span>
+                      <span className="uploaded-filename">{imageFileName || 'Custom Dish Photo'}</span>
+                      {imageFileSize && <span className="uploaded-filesize">({imageFileSize})</span>}
+                    </div>
+                    <div className="uploaded-actions">
+                      <button
+                        type="button"
+                        onClick={triggerFilePicker}
+                        className="btn btn-secondary btn-sm"
+                      >
+                        Change Photo
+                      </button>
+                      <button
+                        type="button"
+                        onClick={handleRemoveImage}
+                        className="btn btn-logout btn-sm"
+                        style={{ color: 'var(--color-danger)' }}
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </div>
                 </div>
+              ) : (
+                /* Upload Dropzone */
+                <div
+                  className={`image-upload-dropzone ${isDragging ? 'dragging' : ''}`}
+                  onDragOver={handleDragOver}
+                  onDragLeave={handleDragLeave}
+                  onDrop={handleDrop}
+                  onClick={triggerFilePicker}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      triggerFilePicker();
+                    }
+                  }}
+                >
+                  <div className="upload-icon-circle">
+                    <span>📷</span>
+                  </div>
+                  <p className="upload-primary-text">
+                    <span>Click to upload</span> or drag & drop your dish photo here
+                  </p>
+                  <p className="upload-secondary-text">
+                    PNG, JPG, JPEG, or WebP (max 5MB)
+                  </p>
+                  <button
+                    type="button"
+                    className="btn btn-secondary btn-sm upload-browse-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      triggerFilePicker();
+                    }}
+                  >
+                    Select File from Device
+                  </button>
+                </div>
+              )}
+
+              {imageError && (
+                <span className="error-text" style={{ marginTop: '0.4rem' }}>
+                  ⚠️ {imageError}
+                </span>
+              )}
+
+              {/* Quick Preset Photos (Optional Drawer) */}
+              <div className="sample-presets-toggle">
+                <button
+                  type="button"
+                  onClick={() => setShowPresets(!showPresets)}
+                  className="btn-toggle-presets"
+                >
+                  {showPresets ? '▲ Hide sample preset photos' : '▼ Or choose from chef preset photos'}
+                </button>
+
+                {showPresets && (
+                  <div className="sample-thumbnails-grid">
+                    {SAMPLE_IMAGES.map((imgUrl, i) => (
+                      <button
+                        type="button"
+                        key={i}
+                        onClick={() => {
+                          setFormData((p) => ({ ...p, image: imgUrl }));
+                          setImageFileName(`Chef Preset ${i + 1}`);
+                          setImageFileSize('');
+                          setImageError(null);
+                        }}
+                        className={`sample-thumb-btn ${formData.image === imgUrl ? 'selected' : ''}`}
+                        title={`Select Preset ${i + 1}`}
+                      >
+                        <img src={imgUrl} alt={`Preset ${i + 1}`} />
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           </section>

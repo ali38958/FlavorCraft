@@ -45,11 +45,12 @@
   display: none;
   align-items: center;
   position: relative;
-  max-width: 280px;
+  max-width: 220px;
   width: 100%;
+  flex-shrink: 1;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1200px) {
   .navbar-search {
     display: flex;
   }
@@ -58,14 +59,15 @@
 .search-icon {
   position: absolute;
   left: 12px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--color-text-muted);
   pointer-events: none;
 }
 
 .navbar-search-input {
   width: 100%;
-  padding: 0.5rem 1rem 0.5rem 2.25rem;
+  height: 38px;
+  padding: 0 1rem 0 2.25rem;
   font-size: 0.875rem;
   border-radius: var(--radius-full);
   border: 1px solid var(--color-border);
@@ -84,7 +86,8 @@
 .navbar-nav {
   display: flex;
   align-items: center;
-  gap: var(--space-2);
+  gap: 0.35rem;
+  flex-shrink: 0;
 }
 
 .nav-link {
@@ -92,10 +95,16 @@
   font-size: 0.925rem;
   font-weight: 500;
   color: var(--color-text-secondary);
-  padding: 0.5rem 0.85rem;
-  border-radius: var(--radius-md);
+  height: 38px;
+  padding: 0 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap !important;
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
   transition: all var(--transition-fast);
-  position: relative;
+  text-decoration: none;
 }
 
 .nav-link:hover {
@@ -105,8 +114,31 @@
 
 .nav-link.active {
   color: var(--color-primary);
-  font-weight: 700;
+  font-weight: 600;
   background-color: var(--color-primary-light);
+  border-color: var(--color-primary-subtle);
+}
+
+/* Submit Recipe Nav Link Button */
+.nav-link-submit {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary-subtle);
+  font-weight: 600;
+}
+
+.nav-link-submit:hover {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+.nav-link-submit.active {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+  box-shadow: 0 2px 8px rgba(244, 97, 26, 0.25);
 }
 
 /* Actions & Profile */
@@ -126,18 +158,22 @@
 .user-dropdown {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  gap: 0.5rem;
+  flex-shrink: 0;
 }
 
 .user-profile-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.35rem 0.65rem;
+  height: 38px;
+  padding: 0 0.85rem 0 0.35rem;
   border-radius: var(--radius-full);
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
+  white-space: nowrap !important;
   transition: all var(--transition-fast);
+  text-decoration: none;
 }
 
 .user-profile-btn:hover {
@@ -146,23 +182,24 @@
 }
 
 .avatar-circle {
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   border-radius: var(--radius-full);
-  background-color: var(--color-primary);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
   color: white;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 700;
+  flex-shrink: 0;
 }
 
 .user-display-name {
   font-size: 0.875rem;
   font-weight: 600;
   color: var(--color-text);
-  max-width: 110px;
+  max-width: 120px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -170,18 +207,23 @@
 
 .btn-logout {
   background: none;
-  border: none;
+  border: 1px solid transparent;
   color: var(--color-text-muted);
-  font-size: 0.825rem;
+  font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
-  padding: 0.4rem;
-  border-radius: var(--radius-sm);
-  transition: color var(--transition-fast);
+  height: 38px;
+  padding: 0 0.75rem;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
 }
 
 .btn-logout:hover {
   color: var(--color-danger);
+  background-color: var(--color-danger-light);
 }
 
 /* Mobile Toggle */
