@@ -111,7 +111,7 @@ Next phase begins
 |-------|------|-------|--------|-----------|
 | 0 | Git Init and Repo Hygiene | devops-engineer | ✅ Complete | ~10 min |
 | 0.5 | Project Scaffold and Tooling | project-planner | ✅ Complete | ~20 min |
-| 1 | Backend Foundation (Express + JWT) | backend-specialist | Not Started | ~45 min |
+| 1 | Backend Foundation (Express + JWT) | backend-specialist | ✅ Complete | ~45 min |
 | 2 | Frontend Foundation (Design System + Layout) | frontend-specialist | Not Started | ~30 min |
 | 3 | Core Pages (Homepage + Recipe List) | frontend-specialist | Not Started | ~60 min |
 | 4 | Recipe Detail + Submit Form | frontend-specialist | Not Started | ~45 min |
@@ -280,13 +280,13 @@ At minimum 8 recipes each with: id, title, description, image (URL or placeholde
 
 ### Tasks
 
-- [ ] server.js — Express + middleware (cors, json, dotenv)
-- [ ] routes/recipes.js — All 4 recipe routes
-- [ ] routes/auth.js — Register + Login
-- [ ] middleware/auth.js — JWT verify middleware
-- [ ] data/recipes.js — 8+ seed recipes
-- [ ] data/users.js — Empty user store
-- [ ] Wire all routes and test
+- [x] server.js — Express + middleware (cors, json, dotenv)
+- [x] routes/recipes.js — All 4 recipe routes
+- [x] routes/auth.js — Register + Login
+- [x] middleware/auth.js — JWT verify middleware
+- [x] data/recipes.js — 8+ seed recipes
+- [x] data/users.js — Empty user store
+- [x] Wire all routes and test
 
 ### How to Verify Phase 1
 

@@ -2,12 +2,23 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 
+const authRoutes = require('./routes/auth');
+const recipeRoutes = require('./routes/recipes');
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Request logging in development
+if (process.env.NODE_ENV !== 'test') {
+  app.use((req, res, next) => {
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+    next();
+  });
+}
 
 // Health check endpoint
 app.get('/health', (req, res) => {
@@ -18,6 +29,10 @@ app.get('/health', (req, res) => {
   });
 });
 
+// API Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/recipes', recipeRoutes);
+
 // Root welcome route
 app.get('/', (req, res) => {
   res.status(200).json({
@@ -27,6 +42,22 @@ app.get('/', (req, res) => {
       recipes: '/api/recipes',
       auth: '/api/auth'
     }
+  });
+});
+
+// 404 Handler for undefined routes
+app.use((req, res) => {
+  res.status(404).json({
+    error: `Route not found: ${req.method} ${req.originalUrl}`
+  });
+});
+
+// Global Centralized Error Handler
+app.use((err, req, res, next) => {
+  console.error('Unhandled server error:', err);
+  res.status(500).json({
+    error: 'Internal server error occurred',
+    message: process.env.NODE_ENV === 'development' ? err.message : undefined
   });
 });
 
