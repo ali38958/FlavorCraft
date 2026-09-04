@@ -1,0 +1,317 @@
+/* Submit Recipe Page Styles */
+.submit-recipe-page {
+  padding: var(--space-8) 0 var(--space-16);
+  background-color: var(--color-bg);
+}
+
+.submit-container {
+  max-width: 800px;
+}
+
+.submit-header {
+  margin-bottom: var(--space-8);
+  text-align: center;
+}
+
+.submit-title {
+  margin-bottom: var(--space-2);
+}
+
+.submit-subtitle {
+  font-size: 1.05rem;
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Auth Prompt */
+.submit-auth-prompt-card {
+  display: flex;
+  gap: var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-accent);
+  border-left: 4px solid var(--color-accent);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  margin-bottom: var(--space-8);
+  box-shadow: var(--shadow-sm);
+  align-items: center;
+}
+
+.auth-prompt-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.auth-prompt-body h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.25rem;
+  color: var(--color-text);
+}
+
+.auth-prompt-body p {
+  font-size: 0.925rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-4);
+}
+
+.auth-prompt-actions {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.submit-error-banner {
+  background-color: var(--color-danger-light);
+  border: 1px solid var(--color-danger);
+  color: var(--color-danger);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-6);
+  font-weight: 500;
+}
+
+/* Form Cards */
+.submit-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.form-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  margin-bottom: var(--space-5);
+  color: var(--color-text);
+  border-bottom: 1px solid var(--color-border-subtle);
+  padding-bottom: var(--space-3);
+}
+
+.card-header-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-5);
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  border-bottom: 1px solid var(--color-border-subtle);
+  padding-bottom: var(--space-3);
+}
+
+.card-header-flex .form-card-title {
+  margin-bottom: 0;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.card-subtitle {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-top: 0.2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: var(--space-5);
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+.form-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.required-star {
+  color: var(--color-danger);
+}
+
+.input-error {
+  border-color: var(--color-danger) !important;
+  box-shadow: 0 0 0 3px var(--color-danger-light) !important;
+}
+
+.error-text {
+  font-size: 0.8rem;
+  color: var(--color-danger);
+  font-weight: 500;
+  margin-top: 0.2rem;
+}
+
+.form-row {
+  display: grid;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.form-row.three-cols {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 768px) {
+  .form-row.three-cols {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Sample Thumbnails */
+.sample-images-row {
+  margin-top: var(--space-2);
+}
+
+.sample-label {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.sample-thumbnails {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.sample-thumb-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--color-border);
+  overflow: hidden;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+  transition: all var(--transition-fast);
+}
+
+.sample-thumb-btn:hover {
+  border-color: var(--color-primary-hover);
+  transform: scale(1.05);
+}
+
+.sample-thumb-btn.selected {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-primary-light);
+}
+
+.sample-thumb-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Dynamic Rows */
+.dynamic-rows-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.dynamic-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.dynamic-row.instruction-row {
+  align-items: flex-start;
+}
+
+.row-index-bullet {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  width: 24px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.step-badge {
+  font-size: 0.775rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  background-color: var(--color-primary-light);
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 0.35rem;
+}
+
+.dynamic-row-input {
+  flex-grow: 1;
+}
+
+.btn-remove-row {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface-elevated);
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.btn-remove-row:hover {
+  background-color: var(--color-danger-light);
+  color: var(--color-danger);
+  border-color: var(--color-danger);
+}
+
+/* Form Actions Card */
+.form-actions-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6) var(--space-8);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.actions-note {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  max-width: 360px;
+}
+
+.actions-buttons {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+  .form-actions-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .actions-buttons {
+    flex-direction: column;
+  }
+  .actions-buttons .btn {
+    width: 100%;
+  }
+}
