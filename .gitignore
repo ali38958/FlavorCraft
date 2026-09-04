@@ -6,7 +6,7 @@ DESIGN.md
 frontend/README.md
 
 # Environment and Secrets
-.env
+!backend/.env
 .env.local
 .env.*.local
 
