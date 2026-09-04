@@ -1,0 +1,199 @@
+/* Homepage Styles */
+.home-page {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Featured Recipes Section */
+.featured-recipes-section {
+  padding: var(--space-12) 0;
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.featured-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: var(--space-8);
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.featured-view-all-btn {
+  white-space: nowrap;
+}
+
+.featured-recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6);
+}
+
+@media (max-width: 1100px) {
+  .featured-recipe-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .featured-recipe-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.featured-mobile-cta {
+  display: none;
+  margin-top: var(--space-6);
+}
+
+@media (max-width: 768px) {
+  .featured-view-all-btn {
+    display: none;
+  }
+  .featured-mobile-cta {
+    display: block;
+  }
+}
+
+.featured-error-msg {
+  padding: 1rem;
+  background-color: var(--color-danger-light);
+  color: var(--color-danger);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-6);
+}
+
+/* Feature Highlights Strip */
+.features-highlight-strip {
+  padding: var(--space-12) 0;
+  background-color: var(--color-bg);
+}
+
+.features-highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8);
+}
+
+@media (max-width: 860px) {
+  .features-highlight-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}
+
+.highlight-item {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-xs);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform var(--transition-fast);
+}
+
+.highlight-item:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-primary-subtle);
+}
+
+.highlight-icon {
+  font-size: 2.25rem;
+  margin-bottom: var(--space-3);
+  display: inline-block;
+}
+
+.highlight-title {
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+
+.highlight-desc {
+  font-size: 0.925rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+}
+
+/* Community CTA Box */
+.community-cta-section {
+  padding: 0 0 var(--space-16);
+  background-color: var(--color-bg);
+}
+
+.community-cta-box {
+  background: linear-gradient(135deg, #2D1A12 0%, #1A1F26 100%);
+  border-radius: var(--radius-xl);
+  padding: var(--space-12) var(--space-8);
+  color: #ffffff;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.community-cta-box::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(244, 97, 26, 0.25) 0%, rgba(244, 97, 26, 0) 70%);
+  pointer-events: none;
+}
+
+.community-cta-content {
+  position: relative;
+  z-index: 2;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.community-cta-badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+  display: inline-block;
+  margin-bottom: var(--space-3);
+}
+
+.community-cta-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 3vw + 1rem, 2.5rem);
+  color: #ffffff;
+  margin-bottom: var(--space-4);
+}
+
+.community-cta-desc {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.82);
+  margin-bottom: var(--space-8);
+}
+
+.community-cta-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+  .community-cta-actions {
+    flex-direction: column;
+  }
+  .community-cta-actions .btn {
+    width: 100%;
+  }
+}

@@ -1,0 +1,90 @@
+/* Recipe List Page Styles */
+.recipe-list-page {
+  padding: var(--space-8) 0 var(--space-16);
+  background-color: var(--color-bg);
+  min-height: calc(100vh - 72px - 260px);
+}
+
+.recipe-list-header {
+  margin-bottom: var(--space-6);
+}
+
+.recipe-list-title {
+  margin-bottom: var(--space-2);
+}
+
+.recipe-list-subtitle {
+  font-size: 1.05rem;
+  color: var(--color-text-secondary);
+  max-width: 680px;
+}
+
+/* Recipes Grid (PDF Requirement 2.a) */
+.recipes-grid-layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+@media (max-width: 1024px) {
+  .recipes-grid-layout {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .recipes-grid-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Empty State */
+.recipes-empty-state {
+  grid-column: 1 / -1;
+  background-color: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-12) var(--space-6);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 540px;
+  margin: var(--space-6) auto;
+}
+
+.empty-icon {
+  font-size: 3.5rem;
+  margin-bottom: var(--space-3);
+  display: inline-block;
+}
+
+.recipes-empty-state h3 {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  margin-bottom: var(--space-2);
+  color: var(--color-text);
+}
+
+.recipes-empty-state p {
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+  margin-bottom: var(--space-6);
+}
+
+.empty-actions {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Error Box */
+.recipes-error-box {
+  background-color: var(--color-danger-light);
+  border: 1px solid rgba(223, 52, 70, 0.3);
+  color: var(--color-danger);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-6);
+}
